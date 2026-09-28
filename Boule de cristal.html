@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Boule de cristal n°87</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#120a24;--fg:#efe6ff;--accent:#a78bfa;--card:#1e1338;--ok:#4ade80;--ko:#f87171}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3edff;--fg:#23113f;--accent:#6d28d9;--card:#fff;--ok:#15803d;--ko:#b91c1c}}
+:root[data-theme="dark"]{--bg:#120a24;--fg:#efe6ff;--accent:#a78bfa;--card:#1e1338;--ok:#4ade80;--ko:#f87171}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:Georgia,'Times New Roman',serif;display:flex;align-items:center;justify-content:center;text-align:center}
+main{background:var(--card);padding:28px 24px;border-radius:20px;width:min(92%,380px);box-shadow:0 10px 40px #0004}
+.orb{width:120px;height:120px;border-radius:50%;margin:0 auto 16px;background:radial-gradient(circle at 35% 30%,#fff9,var(--accent) 45%,#3b1a80);box-shadow:0 0 40px var(--accent)}
+h1{font-size:1.3rem;margin:0 0 6px}
+p{margin:0 0 16px;opacity:.8;font-size:.95rem}
+input{width:100%;box-sizing:border-box;font-size:1.8rem;text-align:center;letter-spacing:.4em;padding:10px;border-radius:12px;border:2px solid var(--accent);background:transparent;color:var(--fg)}
+button{margin-top:14px;width:100%;padding:12px;font-size:1.05rem;border:0;border-radius:12px;background:var(--accent);color:#fff;cursor:pointer;font-family:inherit}
+#msg{min-height:3em;margin-top:14px;font-weight:bold}
+</style>
+</head>
+<body>
+<main>
+<div class="orb"></div>
+<h1>Boule de cristal n°87</h1>
+<p>Entrez le code pour appeler au secours.</p>
+<input id="c" type="text" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="····">
+<button id="b">Valider</button>
+<div id="msg"></div>
+</main>
+<script>
+var SECRET = atob("NDM3Ng=="); // code attendu (encodé en base64)
+var c = document.getElementById("c"), m = document.getElementById("msg");
+function check(){
+  if (c.value.trim() === SECRET){
+    m.style.color = "var(--ok)";
+    m.textContent = "✨ Code correct ! Le signal de détresse est envoyé. Vous êtes sauvés ! ✨";
+  } else {
+    m.style.color = "var(--ko)";
+    m.textContent = "Rien ne se passe... Le code est incorrect.";
+  }
+}
+document.getElementById("b").onclick = check;
+c.addEventListener("keydown", function(e){ if(e.key === "Enter") check(); });
+</script>
+</body>
+</html>
